@@ -21,6 +21,12 @@
 			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+		    <groupId>org.apache.maven.surefire</groupId>
+		    <artifactId>surefire-api</artifactId>
+		    <version>2.10</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -37,6 +43,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.10</version>
 				<configuration>
+					<forkMode>always</forkMode>
 					<runOrder>random</runOrder>
 				</configuration>
 			</plugin>
@@ -44,6 +51,10 @@
 				<groupId>fr.codingmojo</groupId>
 				<artifactId>maven-surefire-replay</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
+				<configuration>
+					<forkMode>once</forkMode>
+					<reportsDirectory>${project.build.directory}/surefire-reports-replay)</reportsDirectory>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
