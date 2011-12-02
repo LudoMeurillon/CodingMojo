@@ -17,28 +17,22 @@ package fr.codingmojo;
  */
 
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.surefire.SurefirePlugin;
+import org.apache.maven.plugin.surefire.SurefireExtensionMojo;
 
 /**
  * Run tests using Surefire.
- *
+ * 
  * @author Ludovic Meurillon
  * @version $Id: MyMojo.java $
- * @requiresDependencyResolution test
+ * 
+ * @extendsPlugin surefire
+ * @extendsGoal test
  * @goal replay
  * @phase test
+ * 
  * @threadSafe
  * @noinspection JavaDoc
  */
-public class MyMojo extends SurefirePlugin {
+public class MyMojo extends SurefireExtensionMojo {
 
-	public void execute() throws MojoExecutionException {
-
-		try {
-			super.execute();
-		} catch (MojoFailureException e) {
-			throw new MojoExecutionException("Error running tests ", e);
-		}
-	}
 }

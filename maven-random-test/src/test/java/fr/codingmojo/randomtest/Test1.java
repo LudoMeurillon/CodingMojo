@@ -1,13 +1,15 @@
 package fr.codingmojo.randomtest;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import fr.codingmojo.CalcUtils;
 
 public class Test1 {
 
 	@Test
 	public void test(){
-		assertTrue(true);
+		assertEquals(5, CalcUtils.add(2, 3));
 	}
 }
