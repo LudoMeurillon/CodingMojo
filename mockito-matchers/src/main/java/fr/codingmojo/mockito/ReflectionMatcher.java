@@ -3,10 +3,8 @@ package fr.codingmojo.mockito;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 import org.mockito.ArgumentMatcher;
-import org.springframework.test.util.ReflectionTestUtils;
 
 public class ReflectionMatcher<T> extends ArgumentMatcher<T>{
 
@@ -51,7 +49,6 @@ public class ReflectionMatcher<T> extends ArgumentMatcher<T>{
 		}catch(InvocationTargetException e){
 			e.printStackTrace();
 		}
-		
 		if(value != null){
 			return value.equals(realValue);
 		}else{
