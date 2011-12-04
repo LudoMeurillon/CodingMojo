@@ -3,12 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>fr.codingmojo</groupId>
-	<artifactId>maven-random-test</artifactId>
+	<artifactId>mockito-matchers</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>maven-random-test</name>
-	<url>http://maven.apache.org</url>
+	<name>mockito-matchers</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,16 +20,29 @@
 			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+	    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-core</artifactId>
+		    <version>1.9.0-rc1</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
+		    <version>3.0.6.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>3.0.6.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-logging</groupId>
+		    <artifactId>commons-logging</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
-		
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

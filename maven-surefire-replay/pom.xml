@@ -4,7 +4,7 @@
 
 	<groupId>fr.codingmojo</groupId>
 	<artifactId>maven-surefire-replay</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>maven-surefire-replay Maven Plugin</name>
@@ -12,6 +12,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<!-- no test to run into this plugin -->
+		<skipTests>true</skipTests>
 	</properties>
 
 	<dependencies>
@@ -25,7 +28,6 @@
 		    <artifactId>maven-artifact</artifactId>
 		    <version>2.2.1</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-project</artifactId>
@@ -73,7 +75,7 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -92,6 +94,8 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+			<!-- Plugin used to extends SurefirePlugin without rewrite-it from the begining -->
 			<plugin>
 				<groupId>org.ops4j</groupId>
 		        <artifactId>maven-inherit-plugin</artifactId>

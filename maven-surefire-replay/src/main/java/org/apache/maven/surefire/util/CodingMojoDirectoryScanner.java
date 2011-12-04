@@ -2,8 +2,10 @@ package org.apache.maven.surefire.util;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class CodingMojoDirectoryScanner extends DefaultDirectoryScanner {
@@ -43,7 +45,10 @@ public class CodingMojoDirectoryScanner extends DefaultDirectoryScanner {
 	String[] collectTests() {
 		try {
 			assert basedir.isDirectory();
-			File file = new File(basedir.getParent(), "surefire-reports");
+			String reportsDirPath = System.getProperty("surefire.replay.last.reports");
+			System.out.println("Scanning last tests reports from : "+reportsDirPath);
+			File file = new File(reportsDirPath);
+//			File file = new File(basedir.getParent(), "surefire-reports");
 			assert file.isDirectory();
 
 			String[] xmlResults = file.list(new FilenameFilter() {
@@ -57,9 +62,9 @@ public class CodingMojoDirectoryScanner extends DefaultDirectoryScanner {
 
 			List<FileBean> klasses = new ArrayList<FileBean>();
 			for (String filename : xmlResults) {
-				klasses.add(new FileBean(Class.forName(filename.replace(".txt",
-						"") /* , false, ClassLoader.getSystemClassLoader() */),
-						new File(file, filename).lastModified()));
+				FileBean fileBean = new FileBean(Class.forName(filename.replace(".txt","")),new File(file, filename).lastModified());
+				System.out.println("Found test report : "+fileBean);
+				klasses.add(fileBean);
 			}
 			Collections.sort(klasses);
 
@@ -84,7 +89,16 @@ public class CodingMojoDirectoryScanner extends DefaultDirectoryScanner {
 		}
 
 		public int compareTo(FileBean o) {
-			return this.timestamp.compareTo(o.timestamp);
+			int result = this.timestamp.compareTo(o.timestamp);
+			if(result == 0){
+				return this.klass.getName().compareTo(o.klass.getName());
+			}
+			return result;
+		}
+		
+		@Override
+		public String toString() {
+			return klass.getName()+" "+new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS").format(new Date(timestamp))+" ("+timestamp+")";
 		}
 	}
 }
