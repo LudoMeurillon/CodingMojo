@@ -9,6 +9,7 @@ body {
 
 h1{
   color:#88bb21;
+  text-shadow:1px 1px 0px rgba(0, 0, 0, 0.12),-1px 1px 0px rgba(0, 0, 0, 0.12)
   margin:0 0 20px;
 }
 
